@@ -6,7 +6,9 @@ const getPort = require('get-port');
 const serverErrors = require('./utils/customErrors').serverErrors;
 
 function middleware(bundler) {
-  const serve = serveStatic(bundler.options.outDir, {index: false});
+  const serve = serveStatic(bundler.options.outDir, {
+    index: false
+  });
 
   return function(req, res, next) {
     // Wait for the bundler to finish bundling if needed
@@ -57,7 +59,9 @@ function middleware(bundler) {
 }
 
 async function serve(bundler, port) {
-  let freePort = await getPort({port});
+  let freePort = await getPort({
+    port
+  });
   let server = http.createServer(middleware(bundler)).listen(freePort);
 
   server.on('error', err => {
