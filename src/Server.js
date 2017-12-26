@@ -6,7 +6,9 @@ const serverErrors = require('./utils/customErrors').serverErrors;
 const generateCertificate = require('./utils/generateCertificate');
 
 function middleware(bundler) {
-  const serve = serveStatic(bundler.options.outDir, {index: false});
+  const serve = serveStatic(bundler.options.outDir, {
+    index: false
+  });
 
   return function(req, res, next) {
     // Wait for the bundler to finish bundling if needed
@@ -56,6 +58,7 @@ function middleware(bundler) {
   };
 }
 
+<<<<<<< HEAD
 async function serve(bundler, port, useHTTPS = false) {
   let handler = middleware(bundler);
   let server = useHTTPS
@@ -64,6 +67,13 @@ async function serve(bundler, port, useHTTPS = false) {
 
   let freePort = await getPort({port});
   server.listen(freePort);
+=======
+async function serve(bundler, port) {
+  let freePort = await getPort({
+    port
+  });
+  let server = http.createServer(middleware(bundler)).listen(freePort);
+>>>>>>> update
 
   return new Promise((resolve, reject) => {
     server.on('error', err => {
