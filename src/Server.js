@@ -58,8 +58,6 @@ function middleware(bundler) {
   };
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 async function serve(bundler, port, useHTTPS = false) {
   let handler = middleware(bundler);
   let server = useHTTPS
@@ -68,15 +66,6 @@ async function serve(bundler, port, useHTTPS = false) {
 
   let freePort = await getPort({port});
   server.listen(freePort);
-=======
-=======
->>>>>>> f5bfa9782e2265071c7a1831cb77d10a688f7054
-async function serve(bundler, port) {
-  let freePort = await getPort({
-    port
-  });
-  let server = http.createServer(middleware(bundler)).listen(freePort);
->>>>>>> update
 
   return new Promise((resolve, reject) => {
     server.on('error', err => {
